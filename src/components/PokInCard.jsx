@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import '../style/index.css'
+import Button from './Button';
 
-export default function PokInCard(props){
+function PokInCard(props){
   return (
     <div className='card'>
       <img src={props.sprite} alt="" />
       <div>{props.name}</div>
+      <Button />
     </div>
   )
 }
-PokInCard.PropTypes = {
-  name: PropTypes.string.isRequired,
-  sprite: PropTypes.string.isRequired
+PokInCard.propTypes = {
+  name: propTypes.string.isRequired,
+  sprite: propTypes.string.isRequired
 }
+
+export default PokInCard;
