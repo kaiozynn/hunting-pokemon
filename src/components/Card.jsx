@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react' // para usar uma classe de componente tem q importar o Component
 import axios from 'axios'
 import PokInCard from './PokInCard';
+import '../style/index.css'
 
 const userPokes = [];
 
-function getPokemon(name, sprite) {
-  if(name !== undefined) {
+function getPokemon(name, sprite, id, limitedPOk) {
+  if(name !== undefined && limitedPOk.length < 1) {
     userPokes.push(
-      <PokInCard name={name} sprite={sprite}/>
+      <div key={id} className={`card ${name}`}>
+        <PokInCard name={name} sprite={sprite}/>
+      </div>
     )
   }
 }
@@ -30,8 +33,9 @@ function Card() {
     pokemon()
   }, [])
 
+  const limitedPOk = document.getElementsByClassName(`${data.name}`);
   const sprite_pok = Object.assign({}, data.sprites)
-  getPokemon(data.name, sprite_pok.front_default)
+  getPokemon(data.name, sprite_pok.front_default, data.id, limitedPOk)
 
   return (
     <>
